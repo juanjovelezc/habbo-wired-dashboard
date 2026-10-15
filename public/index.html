@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habbo Wired Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <div>
+        <h1>Habbo Wired Dashboard</h1>
+        <p id="configLine" class="muted">Cargando configuracion...</p>
+      </div>
+    </div>
+    <div class="actions">
+      <span id="statusPill" class="pill">—</span>
+      <button id="refreshBtn" class="btn">↻ Actualizar</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="global">Globales</button>
+    <button class="tab" data-tab="users">Usuarios / Mascotas / Bots</button>
+    <button class="tab" data-tab="clicks">Clics</button>
+  </nav>
+
+  <main>
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- GLOBALES -->
+    <section id="tab-global" class="tabpanel active">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Variables globales de la sala</h2>
+          <button id="loadGlobalBtn" class="btn btn-ghost">Cargar variables</button>
+        </div>
+        <p class="muted">Estos valores se reflejan al instante en el Wired de la sala.</p>
+        <div id="globalBody" class="list"></div>
+      </div>
+    </section>
+
+    <!-- USUARIOS -->
+    <section id="tab-users" class="tabpanel">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Variables por usuario, mascota o bot</h2>
+        </div>
+
+        <div class="group-members">
+          <div class="field grow">
+            <label>Miembro del grupo de la sala</label>
+            <select id="groupMember">
+              <option value="">Cargando miembros...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button id="reloadMembersBtn" class="btn btn-ghost">↻ Recargar</button>
+          </div>
+        </div>
+
+        <div class="lookup">
+          <div class="field">
+            <label>Objetivo</label>
+            <select id="targetKind">
+              <option value="users">Usuario (Habbo)</option>
+              <option value="pets">Mascota</option>
+              <option value="bots">Bot</option>
+            </select>
+          </div>
+          <div class="field grow">
+            <label id="lookupLabel">Nombre de usuario o ID unico</label>
+            <input id="lookupValue" type="text" placeholder="ej. whatwasit o hhus-..." />
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button id="loadProfileBtn" class="btn">Cargar</button>
+          </div>
+        </div>
+
+        <div id="profileInfo" class="profile-info muted" hidden></div>
+        <div id="usersBody" class="list"></div>
+      </div>
+    </section>
+
+    <!-- CLICS -->
+    <section id="tab-clicks" class="tabpanel">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Clics entre usuarios</h2>
+          <button id="loadClicksBtn" class="btn btn-ghost">↻ Recargar</button>
+        </div>
+        <p class="muted" id="clicksInfo">Variable <code id="clicksVar"></code> · muestra quién clicó a quién.</p>
+        <div id="clicksBody" class="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
